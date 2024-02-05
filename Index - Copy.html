@@ -79,17 +79,24 @@
 }
 
     
-    function rejectValentine() {
-      var yesButton = document.querySelector("button");
-      var currentSize = window.getComputedStyle(yesButton).getPropertyValue('font-size');
-      var newSize = parseFloat(currentSize) * 1.2; 
-      yesButton.style.fontSize = newSize + "px";
+   function shiftNoButtonRandomly() {
       var noButton = document.querySelector("button[type='button']");
-    var randomTexts = ["Click Yes", "Please Hle", "Please i am single", "Try Again", "Click Me"];
-    var newText = randomTexts[Math.floor(Math.random() * randomTexts.length)];
-    noButton.innerText = newText;
- 
+      var screenWidth = window.innerWidth;
+      var screenHeight = window.innerHeight;
+
+      var randomX = Math.floor(Math.random() * (screenWidth - noButton.clientWidth));
+      var randomY = Math.floor(Math.random() * (screenHeight - noButton.clientHeight));
+
+      noButton.style.position = "absolute";
+      noButton.style.left = randomX + "px";
+      noButton.style.top = randomY + "px";
     }
+
+    function rejectValentine() {
+      document.getElementById("tryAgain").style.display = "block";
+      shiftNoButtonRandomly(); // Corrected function name
+    }
+
 
 
   </script>
